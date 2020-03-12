@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Spectra.Builders
 {
@@ -23,6 +24,12 @@ namespace Spectra.Builders
         public BoundColumnBuilder<T> Format(string format)
         {
             Column.Format = format;
+            return this;
+        }
+
+        public BoundColumnBuilder<T> Filterable(IEnumerable<SelectListItem> source)
+        {
+            Column.FilterSource = source;
             return this;
         }
     }

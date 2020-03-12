@@ -5,6 +5,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace Spectra.Components
 {
@@ -13,6 +15,7 @@ namespace Spectra.Components
         public BoundColumn(Expression<Func<T, object>> expression)
         {
             base.Expression = expression;
+            base.Name = GetMemberName();
         }
         public string Text { get; set; }
 
@@ -26,16 +29,24 @@ namespace Spectra.Components
                 return rendered?.ToString();
         }
 
-        public override string FilterRender()
+        public override string FilterRender(HtmlHelper htmlHelper)
         {
+            string SelectedValue = htmlHelper.ViewContext.HttpContext.Request.QueryString[Name];
+            if(FilterSource != null)
+            {
+                SelectListItem item = FilterSource.FirstOrDefault(n => n.Value == SelectedValue);
+                if(item != null) item.Selected = true;
+                return htmlHelper.DropDownList(base.Name, FilterSource, "Seçiniz", new { @class = "form-control" }).ToString();
+            }
+
             if (GetMemberType() == typeof(int))
-                return "<input type='number' class='form-control' onchange='alert(change)'/>";
+                return htmlHelper.TextBox(Name, SelectedValue, new { type = "number", @class = "form-control" }).ToString();
             else if (GetMemberType() == typeof(string))
-                return "<input type='text' class='form-control'/>";
+                return htmlHelper.TextBox(Name, SelectedValue, new { @class = "form-control" }).ToString();
             else if (GetMemberType() == typeof(DateTime))
-                return "<input type='text' class='form-control' value='tarih'/>";
+                return htmlHelper.TextBox(Name, SelectedValue, new { @class = "form-control" }).ToString();
             else if (GetMemberType() == typeof(bool))
-                return "<select><option>Seçiniz</option></select>";
+                return htmlHelper.CheckBox(Name, SelectedValue == "1").ToString();
             else return "";
         }
     }

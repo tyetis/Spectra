@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Spectra.Components
 {
@@ -14,10 +15,12 @@ namespace Spectra.Components
         public Expression<Func<T, object>> Expression { get; set; }
         public Func<T, object> Template { get; set; }
         public string Title { get; set; }
+        public string Name { get; set; }
         public int Width { get; set; }
         public string Format { get; set; }
         public object HtmlAttributes { get; set; }
         public object HeaderHtmlAttributes { get; set; }
+        public IEnumerable<SelectListItem> FilterSource { get; set; }
 
         public virtual string Render(T n)
         {
@@ -26,14 +29,19 @@ namespace Spectra.Components
             else return Template(n).ToString();
         }
 
-        public virtual string FilterRender()
+        public virtual string FilterRender(HtmlHelper htmlHelper)
         {
             return "";
         }
         public Type GetMemberType()
         {
-            Type info = Helper.GetPropertyInfo(Expression);
+            Type info = Helper.GetPropertyType(Expression);
             return info;
         }
+        public string GetMemberName()
+        {
+            return Helper.GetPropertyName(Expression);
+        }
+
     }
 }

@@ -38,5 +38,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".table *:input").change(function () {
+                location.href = "?" + $(".table *:input").serialize();
+            });
+        });
+    </script>
+
 </body>
 </html>

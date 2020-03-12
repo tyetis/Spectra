@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\Grid\BaseColumnBuilder.cs" />
+    <Compile Include="Builders\Grid\TemplateColumnBuilder.cs" />
     <Compile Include="Builders\Grid\ControlsColumnBuilder.cs" />
     <Compile Include="Builders\Grid\GridBuilder.cs" />
     <Compile Include="Builders\Grid\BoundColumnBuilder.cs" />

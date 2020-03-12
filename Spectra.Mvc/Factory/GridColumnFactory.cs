@@ -31,11 +31,11 @@ namespace Spectra.Factory
             Grid.Columns.Add(col);
             return new BoundColumnBuilder<T>(col);
         }
-        public BoundColumnBuilder<T> Template(Func<T, object> expression)
+        public TemplateColumnBuilder<T> Template(Func<T, object> expression)
         {
             TemplateColumn<T> col = new TemplateColumn<T>(expression);
             Grid.Columns.Add(col);
-            return new BoundColumnBuilder<T>(col);
+            return new TemplateColumnBuilder<T>(col);
         }
 
     }

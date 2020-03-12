@@ -34,7 +34,7 @@ namespace Spectra.Helpers
             return helper.ViewContext.HttpContext.Request.Path + generatedLink;
         }
 
-        public static Type GetPropertyInfo<TSource>(Expression<Func<TSource, object>> propertyLambda)
+        public static Type GetPropertyType<TSource>(Expression<Func<TSource, object>> propertyLambda)
         {
             MemberExpression body = propertyLambda.Body as MemberExpression;
 
@@ -46,5 +46,18 @@ namespace Spectra.Helpers
 
             return body.Type;
         }
+        public static string GetPropertyName<TSource>(Expression<Func<TSource, object>> propertyLambda)
+        {
+            MemberExpression body = propertyLambda.Body as MemberExpression;
+
+            if (body == null)
+            {
+                UnaryExpression ubody = (UnaryExpression)propertyLambda.Body;
+                body = ubody.Operand as MemberExpression;
+            }
+
+            return body.Member.Name;
+        }
+
     }
 }

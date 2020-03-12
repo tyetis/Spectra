@@ -66,7 +66,7 @@ namespace Spectra.Components
         {
             return string.Format("<tr>{0}</tr>", string.Join("", Columns.Select(c =>
             {
-                return string.Format("<td>{0}</td>", c.FilterRender());
+                return string.Format("<td>{0}</td>", c.FilterRender(HtmlHelper));
             })));
         }
         private string renderCell(string row, object htmlAttributes)

@@ -32,3 +32,13 @@
 })
 .Filterable()
 .DataSource(Model))
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".table *:input").change(function () {
+                location.href = "?" + $(".table *:input").serialize();
+            });
+        });
+    </script>
+}
