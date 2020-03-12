@@ -3,3 +3,5 @@
 ################################################################################
 
 /Spectra.Mvc/packages
+/Spectra.Mvc/.vs/Spectra
+/Spectra.Mvc/obj/Debug
