@@ -74,3 +74,4 @@ D:\TFS_PROJECTS\Spectra\Spectra.Sample\Spectra.Sample\obj\Debug\Spectra.Sample.d
 D:\TFS_PROJECTS\Spectra\Spectra.Sample\Spectra.Sample\obj\Debug\Spectra.Sample.pdb
 D:\TFS_PROJECTS\Spectra\Spectra.Sample\Spectra.Sample\bin\Spectra.dll
 D:\TFS_PROJECTS\Spectra\Spectra.Sample\Spectra.Sample\bin\Spectra.pdb
+D:\TFS_PROJECTS\Spectra\Spectra.Sample\Spectra.Sample\obj\Debug\Spectra.Sample.csprojAssemblyReference.cache
